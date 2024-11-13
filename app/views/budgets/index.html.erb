@@ -1,0 +1,13 @@
+<% @budgets.each do |e| %>
+  支出: <%= e.expend %>, 収入: <%= e.income %>
+  <%= @expend_total << e.expend %>
+  <%= @income_total << e.income %>
+  <%= link_to '削除', budget_path(e), data: { turbo_method: :delete } %>
+  <br>
+<% end %>
+
+総支出: <%= @expend_total.sum %><br>
+総収入: <%= @income_total.sum %><br>
+収支: <%= @total = @income_total.sum - @expend_total.sum %><br>
+
+<%= link_to "新規追加", new_budget_path %>

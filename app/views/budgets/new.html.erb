@@ -1,0 +1,11 @@
+<%= form_with model: @budget do |f| %>
+  <p>
+    <%= f.label :expend, '支出' %>
+    <%= f.text_field :expend %>
+  </p>
+  <p>
+    <%= f.label :income, '収入' %>
+    <%= f.text_field :income %>
+  </p>
+  <%= f.submit '登録' %>
+<% end %>

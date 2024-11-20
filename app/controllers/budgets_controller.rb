@@ -1,9 +1,10 @@
 class BudgetsController < ApplicationController
     def index
         @budgets = Budget.all
-        @expend_total = []
-        @income_total = []
-        @total = 0
+    end
+    
+    def show
+        @budget = Budget.find(params[:id])
     end
     
     def new

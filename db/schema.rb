@@ -10,6 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+ActiveRecord::Schema[7.1].define(version: 2024_11_13_071015) do
+  create_table "budgets", force: :cascade do |t|
+    t.integer "expend"
+    t.integer "income"
+    t.binary "image"
+  end
+end
 ActiveRecord::Schema[7.1].define(version: 2024_11_13_074500) do
   create_table "users", force: :cascade do |t|
     t.string "uid"

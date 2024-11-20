@@ -1,0 +1,21 @@
+<%= form_with(model: @budget, local: true) do |f| %>
+  <div class="time">
+    <%= f.label :start_time %>
+    <%= f.datetime_select :start_time %>
+  </div>
+  
+  <div class="expend">
+    <%= f.label :expend %>
+    <%= f.text_field :expend %>
+  </div>
+  
+  <div class="income">
+    <%= f.label :income %>
+    <%= f.text_field :income %>
+  </div>
+  
+  <div class="submit">
+    <%= f.submit %>
+  </div>
+  
+<% end %>

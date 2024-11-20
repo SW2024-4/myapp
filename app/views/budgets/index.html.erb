@@ -1,0 +1,11 @@
+<%= month_calendar budgets: @budgets do |date, budgets| %>
+  <%= date.day %>
+  
+  <% @budgets.each do |budget| %>
+    <div>
+      <%= budget.expend %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= link_to "新規追加", new_budget_path %>

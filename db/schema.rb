@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema[7.1].define(version: 2024_11_13_074500) do
   create_table "budgets", force: :cascade do |t|
+    t.datetime "start_time"
     t.integer "expend"
     t.integer "income"
-    t.binary "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

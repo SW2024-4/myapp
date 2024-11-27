@@ -15,12 +15,11 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    b = Budget.new(budget_params.merge(
-    user_id: session[:login_uid],
+    b = Budget.new(
     expend: params[:budget][:expend],
     income: params[:budget][:income]
-    ))
-    Rails.logger.debug "Params received: #{params[:budget].inspect}"
+    )
+    b.user = User.find_by(uid: current_user.uid)
     b.save
     redirect_to root_path
   end
@@ -30,14 +29,4 @@ class BudgetsController < ApplicationController
     redirect_to root_path
   end
 
-  private
-
-  def set_budget
-    @budget = Budget.find_by(id: params[:id], uid: session[:login_uid])
-    redirect_to root_path unless @budget
-  end
-
-  def budget_params
-    params.require(:budget).permit(:start_time, :expend, :income)
-  end
 end

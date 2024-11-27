@@ -1,7 +1,7 @@
 class TopController < ApplicationController
     def main
         if session[:login_uid]
-            redirect_to users_path
+            redirect_to budgets_path
         else
             render 'login'
         end

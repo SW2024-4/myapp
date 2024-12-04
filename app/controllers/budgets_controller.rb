@@ -1,7 +1,4 @@
 class BudgetsController < ApplicationController
-  before_action :authenticate_user
-  before_action :set_budget, only: [:show, :destroy]
-
   def index
     @budgets = current_user.budgets
   end
@@ -15,9 +12,10 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    params[:budget][:start_time] = startTime_join
     b = Budget.new(
-      budget_params
+    expend: params[:budget][:expend],
+    income: params[:budget][:income],
+    date: params[:budget][:date]
     )
     b.user = User.find_by(uid: current_user.uid)
     b.save
@@ -33,14 +31,6 @@ class BudgetsController < ApplicationController
   
   def set_budget
     @budget = Budget.find(params[:id])
-  end
-
-  def budget_params
-    params.require(:budget).permit(:start_time)
-  end
-  
-  def startTime_join
-    date = params[:budget][:start_time]
   end
   
 end

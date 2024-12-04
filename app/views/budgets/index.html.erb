@@ -1,19 +1,23 @@
-<div id="page">
 <%= month_calendar budgets: @budgets do |date, budgets| %>
-  <% day_of_month = date.day %>
+  <% year = date.year %> <!-- 年を変数に格納 -->
+  <% month = date.month %> <!-- 月を変数に格納 -->
+  <% day_of_month = date.day %> <!-- 日付を変数に格納 -->
   
-  <% budgets.each do |budget| %>
-    <% if day_of_month == budget.start_time.day %>
-      <div>
-        支出：<%= budget.expend %><br>
-        収入：<%= budget.income %><br>
-        日　：<%= budget.start_time %><br>
-        <%= link_to '削除', budget_path(budget), data: { turbo_method: :delete } %>
-      </div>
-    <% end %>
-  <% end %>
-<% end %>
+  <div class="day">
+    <!-- 年月日を表示 -->
+    <span><%= "#{year}-#{month}-#{day_of_month}" %></span> <!-- 年月日を表示 -->
+    
+    <% budget_for_day = @budgets.find { |b| b.date.day == day_of_month && b.date.month == month && b.date.year == year } %>
+    <!-- その日付の予算を取得 -->
 
+    <div>
+      <% if budget_for_day %>
+        <%= budget_for_day.expend %> <!-- 予算があれば表示 -->
+      <% else %>
+        No Budget <!-- 予算がなければ表示 -->
+      <% end %>
+    </div>
+  </div>
+<% end %>
 <%= link_to "新規追加", new_budget_path %>
-</div>
-</body>
+<%= link_to "ログアウト", top_logout_path %>

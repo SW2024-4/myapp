@@ -1,7 +1,4 @@
 class BudgetsController < ApplicationController
-  before_action :authenticate_user
-  before_action :set_budget, only: [:show, :destroy]
-
   def index
     @budgets = current_user.budgets
   end
@@ -17,7 +14,9 @@ class BudgetsController < ApplicationController
   def create
     b = Budget.new(
     expend: params[:budget][:expend],
-    income: params[:budget][:income]
+    income: params[:budget][:income],
+    date: params[:budget][:date]
+    
     )
     b.user = User.find_by(uid: current_user.uid)
     b.save

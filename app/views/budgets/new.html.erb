@@ -1,7 +1,7 @@
 <%= form_with(model: @budget, local: true) do |f| %>
   <div class="time">
-    <%= f.label :start_time %>
-    <%= f.date_select :start_time %>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
   </div>
   
   <div class="expend">

@@ -10,14 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.1].define(version: 2024_12_04_061824) do
   create_table "budgets", force: :cascade do |t|
     t.date "start_time"
     t.integer "expend"
+=======
+ActiveRecord::Schema[7.1].define(version: 2024_12_04_071335) do
+  create_table "budgets", force: :cascade do |t|
+    t.integer "user_id"
+    t.date "date"
+>>>>>>> 48f3f61785e179abcfc27af5aa5e1808365c9d02
     t.integer "income"
+    t.integer "expend"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

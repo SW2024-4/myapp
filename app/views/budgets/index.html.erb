@@ -1,11 +1,19 @@
+<div id="page">
 <%= month_calendar budgets: @budgets do |date, budgets| %>
-  <%= date.day %>
+  <% day_of_month = date.day %>
   
-  <% @budgets.each do |budget| %>
-    <div>
-      <%= budget.expend %>
-    </div>
+  <% budgets.each do |budget| %>
+    <% if day_of_month == budget.start_time.day %>
+      <div>
+        支出：<%= budget.expend %><br>
+        収入：<%= budget.income %><br>
+        日　：<%= budget.start_time %><br>
+        <%= link_to '削除', budget_path(budget), data: { turbo_method: :delete } %>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
 
 <%= link_to "新規追加", new_budget_path %>
+</div>
+</body>

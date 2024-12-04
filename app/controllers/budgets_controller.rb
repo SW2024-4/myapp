@@ -15,9 +15,9 @@ class BudgetsController < ApplicationController
   end
 
   def create
+    params[:budget][:start_time] = startTime_join
     b = Budget.new(
-    expend: params[:budget][:expend],
-    income: params[:budget][:income]
+      budget_params
     )
     b.user = User.find_by(uid: current_user.uid)
     b.save
@@ -25,8 +25,22 @@ class BudgetsController < ApplicationController
   end
 
   def destroy
-    @budget.destroy
+    Budget.find(params[:id]).destroy
     redirect_to root_path
   end
+  
+  private
+  
+  def set_budget
+    @budget = Budget.find(params[:id])
+  end
 
+  def budget_params
+    params.require(:budget).permit(:start_time)
+  end
+  
+  def startTime_join
+    date = params[:budget][:start_time]
+  end
+  
 end

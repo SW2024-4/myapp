@@ -1,0 +1,62 @@
+/* common */
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: #f2feec;
+}
+
+#page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#contents {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: auto;
+    text-align: center;
+}
+
+/* header */
+
+header {
+    
+}
+
+/* footer */
+
+footer {
+    background: #9f9579;
+    bottom: 0;
+    width: 100%;
+    margin-top: auto;
+}
+
+.container {
+    position: fixed;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+}
+
+.nav {
+    margin: 10px;
+    padding: 10px;
+}
+
+.nav:hover {
+    background-color: #555;
+    color: white;
+}
+
+
+/* login */
+
+.form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

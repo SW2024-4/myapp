@@ -5,6 +5,7 @@ class BudgetsController < ApplicationController
 
   def show
     # @budget は set_budget で取得済み
+    @budget = Budget.find(params[:id])
   end
 
   def new
@@ -32,4 +33,5 @@ class BudgetsController < ApplicationController
   def set_budget
     @budget = Budget.find(params[:id])
   end
+
 end

@@ -1,23 +1,40 @@
-<%= month_calendar budgets: @budgets do |date, budgets| %>
-  <% year = date.year %> <!-- 年を変数に格納 -->
-  <% month = date.month %> <!-- 月を変数に格納 -->
-  <% day_of_month = date.day %> <!-- 日付を変数に格納 -->
+<body>
   
-  <div class="day">
-    <!-- 年月日を表示 -->
-    <span><%= "#{year}-#{month}-#{day_of_month}" %></span> <!-- 年月日を表示 -->
-    
-    <% budget_for_day = @budgets.find { |b| b.date.day == day_of_month && b.date.month == month && b.date.year == year } %>
-    <!-- その日付の予算を取得 -->
+<div id="page">
 
-    <div>
-      <% if budget_for_day %>
-        <%= budget_for_day.expend %> <!-- 予算があれば表示 -->
-      <% else %>
-        No Budget <!-- 予算がなければ表示 -->
-      <% end %>
-    </div>
+  <header>
+    header
+  </header>
+
+  <div id="contents">
+    <%= month_calendar budgets: @budgets do |date, budgets| %>
+      <% year = date.year %> <!-- 年を変数に格納 -->
+      <% month = date.month %> <!-- 月を変数に格納 -->
+      <% day_of_month = date.day %> <!-- 日付を変数に格納 -->
+  
+      <div class="day">
+        <!-- 年月日を表示 -->
+        <span><%= "#{day_of_month}" %></span> <!-- 年月日を表示 -->
+    
+        <% budget_for_day = @budgets.find { |b| b.date.day == day_of_month && b.date.month == month && b.date.year == year } %>
+        <!-- その日付の予算を取得 -->
+
+        <div>
+          <% if budget_for_day %>
+            <%= link_to budget_for_day.expend, budget_path(budget_for_day) %> <!-- 予算があれば表示 -->
+          <% else %>
+            No Budget <!-- 予算がなければ表示 -->
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
-<%= link_to "新規追加", new_budget_path %>
-<%= link_to "ログアウト", top_logout_path %>
+
+  <footer class="container">
+    <div class="nav"><%= link_to "新規追加", new_budget_path %></div>
+    <div class="nav"><%= link_to "ログアウト", top_logout_path %></div>
+  </footer>
+  
+</div>
+
+</body>

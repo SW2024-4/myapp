@@ -1,9 +1,36 @@
-<%= form_with url: '/top/login', method: :post, local: true do |f| %>
-    <%= f.label :uid, 'ユーザーID' %>
-    <%= f.text_field :uid %>
-    <%= f.label :pass, 'パスワード' %>
-    <%= f.text_field :pass %>
-    <%= f.submit 'ログイン' %>
-<% end %>
-<p><%= link_to 'ユーザー登録', new_user_path %></p>
-<p><%= link_to 'ユーザー一覧', users_path %></p>
+<body>
+
+<div id="page">
+
+  <header>
+      header
+  </header>
+  
+  <div id="contents">
+      
+    <div class="form">
+    <%= form_with url: '/top/login', method: :post, local: true do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label :uid, 'ユーザーID' %></td>
+          <td><%= f.text_field :uid %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :pass, 'パスワード' %></td>
+          <td><%= f.text_field :pass %></td>
+        </tr>
+      </table>
+        <%= f.submit 'ログイン' %>
+    <% end %>
+    </div>
+    <p><%= link_to 'ユーザー登録', new_user_path %></p>
+    <p><%= link_to 'ユーザー一覧', users_path %></p>
+  </div>
+  
+  <footer>
+      
+  </footer>
+
+</div>
+
+</body>

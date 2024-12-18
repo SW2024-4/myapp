@@ -1,21 +1,35 @@
-<%= form_with(model: @budget, local: true) do |f| %>
-  <div class="time">
-    <%= f.label :date %>
-    <%= f.date_field :date %>
-  </div>
+<body>
+
+<div id="page">
   
-  <div class="expend">
-    <%= f.label :expend %>
-    <%= f.text_field :expend %>
-  </div>
+  <header>
+    header
+  </header>
   
-  <div class="income">
-    <%= f.label :income %>
-    <%= f.text_field :income %>
-  </div>
+  <div id="contents">
   
-  <div class="submit">
-    <%= f.submit %>
+    <div class="form">
+    <%= form_with(model: @budget, local: true) do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label :date %></td>
+          <td><%= f.date_field :date %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :expend %></td>
+          <td><%= f.text_field :expend %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :income %></td>
+          <td><%= f.text_field :income %></td>
+        </tr>
+      </table>
+        <%= f.submit %>
+    <% end %>
+    </div>
+
   </div>
-  
-<% end %>
+
+</div>
+
+</body>

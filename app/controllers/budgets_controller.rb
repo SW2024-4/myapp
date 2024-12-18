@@ -13,14 +13,17 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    b = Budget.new(
+    @budget = Budget.new(
     expend: params[:budget][:expend],
     income: params[:budget][:income],
     date: params[:budget][:date]
     )
-    b.user = User.find_by(uid: current_user.uid)
-    b.save
-    redirect_to root_path
+    @budget.user = User.find_by(uid: current_user.uid)
+    if @budget.save
+      redirect_to root_path
+    else
+      render 'new', status: :unprocessable_entity
+    end
   end
 
   def destroy

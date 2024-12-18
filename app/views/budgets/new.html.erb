@@ -1,6 +1,15 @@
+
 <body>
 
 <div id="page">
+<% if @budget.errors.present? %>
+  <h3>エラーがあります。</h3>
+  <ul>
+    <% @budget.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
   
   <header>
     header

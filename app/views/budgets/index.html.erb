@@ -16,23 +16,40 @@
         <!-- 年月日を表示 -->
         <span><%= "#{day_of_month}" %></span> <!-- 年月日を表示 -->
     
-        <% budget_for_day = @budgets.find { |b| b.date.day == day_of_month && b.date.month == month && b.date.year == year } %>
+        <% budget_for_day = @budgets.select { |b| b.date.day == day_of_month && b.date.month == month && b.date.year == year } %>
         <!-- その日付の予算を取得 -->
 
         <div>
-          <% if budget_for_day %>
-            <%= link_to budget_for_day.expend, budget_path(budget_for_day) %> <!-- 予算があれば表示 -->
+          <% if budget_for_day.any? %>
+            <% total_expend = budget_for_day.sum { |budget| budget.expend } %>
+            <div>
+              合計金額: <%= total_expend %> <!-- 合計を表示 -->
+            </div>
+            <% budget_for_day.each do |budget| %>
+              <div>
+                <%= link_to budget.expend, budget_path(budget) %> <!-- 各予算を表示 -->
+              </div>
+            <% end %>
           <% else %>
             No Budget <!-- 予算がなければ表示 -->
           <% end %>
         </div>
+
       </div>
     <% end %>
+    <div>
+      <h3>現在のユーザー情報</h3>
+      ユーザーID: <%= current_user.uid %><br>
+      メール: <%= current_user.mail %><br>
+  
+      <!-- ユーザー削除リンク -->
+    </div>
   </div>
 
   <footer class="container">
     <div class="nav"><%= link_to "新規追加", new_budget_path %></div>
     <div class="nav"><%= link_to "ログアウト", top_logout_path %></div>
+    <div class="nav"><%= link_to "アカウント削除", user_path(current_user), data: { turbo_method: :delete} %></div>
   </footer>
   
 </div>

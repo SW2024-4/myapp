@@ -1,11 +1,39 @@
-<%= form_with model: @user do |f| %>
-  <%= f.label :uid, "UID" %>
-  <%= f.text_field :uid %>
-  <%= f.label :password, "PASS" %>
-  <%= f.text_field :password %>
-  <%= f.label :password_confirmation, 'パスワード(確認)' %>
-  <%= f.text_field :password_confirmation %>
-  <%= f.label :mail, "mail_address" %>
-  <%= f.text_field :mail %>
-  <%= f.submit "登録" %>
-<% end %>
+<body>
+
+<div id="page">
+  
+  <header>
+    header
+  </header>
+  
+  <div id="contents">
+    
+    <div class="form">
+    <%= form_with model: @user do |f| %>
+      <table>
+        <tr>
+          <td><%= f.label :mail, "mail_address" %></td>
+          <td><%= f.text_field :mail %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :uid, "UID" %></td>
+          <td><%= f.text_field :uid %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password, "PASS" %></td>
+          <td><%= f.text_field :password %></td>
+        </tr>
+        <tr>
+          <td><%= f.label :password_confirmation, 'パスワード(確認)' %></td>
+          <td><%= f.text_field :password_confirmation %></td>
+        </tr>
+      </table>
+        <%= f.submit "登録" %>
+    <% end %>
+    </div>
+    
+  </div>
+
+</div>
+
+</body>

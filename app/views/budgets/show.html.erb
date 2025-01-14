@@ -1,11 +1,37 @@
-<p>
-  <strong>支出：</strong>
-  <%= @budget.expend %>
-</p>
+<body>
 
-<p>
-  <strong>収入：</strong>
-  <%= @budget.income %>
-</p>
+<div id="page">
+  
+  <header>
+    家計簿アプリ
+  </header>
+  
+  <div id="contents">
+    
+    <div class="show">
+    <table>
+    <tr>
+      <td>支出：</td>
+      <td><h2><%= @budget.expend %></h2></td>
+      <td>円</td>
+    </tr>
 
-<%= link_to 'Back', root_path %>
+    <tr>
+      <td>収入：</td>
+      <td><h2><%= @budget.income %></h2></td>
+      <td>円</td>
+    </tr>
+    </table>
+    </div>
+
+  </div>
+  
+  <footer class="container">
+    <div class="nav"><%= link_to "戻る", root_path %></div>
+    <div class="nav"><%= link_to "ログアウト", top_logout_path %></div>
+    <div class="nav"><%= link_to "アカウント削除", user_path(current_user), data: { turbo_method: :delete } %></div>
+  </footer>
+
+</div>
+
+</body>

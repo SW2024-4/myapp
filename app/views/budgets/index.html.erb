@@ -3,7 +3,7 @@
 <div id="page">
 
   <header>
-    header
+    家計簿アプリ
   </header>
 
   <div id="contents">
@@ -50,7 +50,7 @@
               </div>
             <% end %>
           <% else %>
-             <!-- 収支がなければ表示 -->
+             <!-- 収支がなければ何も表示しない -->
           <% end %>
         </div>
 
@@ -58,11 +58,25 @@
     <% end %>
 
     <%# 表示中の月の概要をカレンダーの下部に表示 %>
+    <h3><%= @displayed_year %>年<%= @displayed_month %>月の概要</h3>
     <div class="month-summary">
-      <h3><%= @displayed_year %>年<%= @displayed_month %>月の概要</h3>
-      <p>合計支出額: <%= @total_month_expend %></p>
-      <p>合計収入額: <%= @total_month_income %></p>
-      <p>収支の差額: <%= @total_month_difference %></p>
+      <table>
+        <tr>
+          <td>合計支出額: </td>
+          <td><h2><%= @total_month_expend %></h2></td>
+          <td>円</td>
+        </tr>
+        <tr>
+          <td>合計収入額: </td>
+          <td><h2><%= @total_month_income %></h2></td>
+          <td>円</td>
+        </tr>
+        <tr>
+          <td>収支の差額: </td>
+          <td><h2><%= @total_month_difference %></h2></td>
+          <td>円</td>
+        </tr>
+      </table>
     </div>
     
     <div>

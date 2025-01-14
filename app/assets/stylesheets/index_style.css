@@ -52,6 +52,22 @@ footer {
     color: white;
 }
 
+/* index */
+
+.month-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* show */
+
+.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 
 /* login */
 

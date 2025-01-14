@@ -7,7 +7,26 @@
   </header>
 
   <div id="contents">
+
+    <%# 表示中の月の収支情報を初期化 %>
+    <% @total_month_expend = nil %>
+    <% @total_month_income = nil %>
+    <% @total_month_difference = nil %>
+
     <%= month_calendar budgets: @budgets do |date, budgets| %>
+      <%# 表示中の月の開始日と終了日を取得 %>
+      <% displayed_month_start = date.beginning_of_month %>
+      <% displayed_month_end = date.end_of_month %>
+
+      <%# 表示中の月の収支を1回だけ計算 %>
+      <% if @total_month_expend.nil? && date == displayed_month_start %>
+        <% @total_month_expend = @budgets.select { |b| b.date >= displayed_month_start && b.date <= displayed_month_end }.sum { |b| b.expend } %>
+        <% @total_month_income = @budgets.select { |b| b.date >= displayed_month_start && b.date <= displayed_month_end }.sum { |b| b.income } %>
+        <% @total_month_difference = @total_month_income - @total_month_expend %>
+        <% @displayed_month = displayed_month_start.month %>
+        <% @displayed_year = displayed_month_start.year %>
+      <% end %>
+
       <% year = date.year %> <!-- 年を変数に格納 -->
       <% month = date.month %> <!-- 月を変数に格納 -->
       <% day_of_month = date.day %> <!-- 日付を変数に格納 -->
@@ -37,19 +56,26 @@
 
       </div>
     <% end %>
+
+    <%# 表示中の月の概要をカレンダーの下部に表示 %>
+    <div class="month-summary">
+      <h3><%= @displayed_year %>年<%= @displayed_month %>月の概要</h3>
+      <p>合計支出額: <%= @total_month_expend %></p>
+      <p>合計収入額: <%= @total_month_income %></p>
+      <p>収支の差額: <%= @total_month_difference %></p>
+    </div>
+    
     <div>
       <h3>現在のユーザー情報</h3>
       ユーザーID: <%= current_user.uid %><br>
       メール: <%= current_user.mail %><br>
-  
-      <!-- ユーザー削除リンク -->
     </div>
   </div>
 
   <footer class="container">
     <div class="nav"><%= link_to "新規追加", new_budget_path %></div>
     <div class="nav"><%= link_to "ログアウト", top_logout_path %></div>
-    <div class="nav"><%= link_to "アカウント削除", user_path(current_user), data: { turbo_method: :delete} %></div>
+    <div class="nav"><%= link_to "アカウント削除", user_path(current_user), data: { turbo_method: :delete } %></div>
   </footer>
   
 </div>

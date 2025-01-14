@@ -36,7 +36,7 @@
         <span><%= "#{day_of_month}" %></span> <!-- 年月日を表示 -->
     
         <% budget_for_day = @budgets.select { |b| b.date.day == day_of_month && b.date.month == month && b.date.year == year } %>
-        <!-- その日付の予算を取得 -->
+        <!-- その日付の収支を取得 -->
 
         <div>
           <% if budget_for_day.any? %>
@@ -46,11 +46,11 @@
             </div>
             <% budget_for_day.each do |budget| %>
               <div>
-                <%= link_to budget.expend, budget_path(budget) %> <!-- 各予算を表示 -->
+                <%= link_to budget.expend, budget_path(budget) %> <!-- 各収支を表示 -->
               </div>
             <% end %>
           <% else %>
-            No Budget <!-- 予算がなければ表示 -->
+             <!-- 収支がなければ表示 -->
           <% end %>
         </div>
 

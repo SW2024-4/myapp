@@ -1,0 +1,22 @@
+databases:
+- name: db_0115
+databaseName: db_0115
+user: db_0115_user
+plan: free
+services:
+- type: web
+name: myapp
+runtime: ruby
+plan: free
+buildCommand: "./bin/render-build.sh"
+# preDeployCommand: "bundle exec rails db:migrate" # preDeployCommand only available on paid instance types
+startCommand: "bundle exec rails server"
+envVars:
+- key: DATABASE_URL
+fromDatabase:
+name: postgresql://db_0115_user:6GShynZWnKDrz69nJR93MPattmGOLnj9@dpg-cu3c590gph6c73bqbscg-a/db_0115
+property: connectionString
+- key: RAILS_MASTER_KEY
+sync: false
+- key: WEB_CONCURRENCY
+value: 2 # sensible default
